@@ -7,7 +7,7 @@ export const SITE = {
   timezoneLabel: "Lagos, WAT (GMT+1)",
   timeZone: "Africa/Lagos",
   email: "akpanfavoura4@gmail.com",
-  resumePath: "/Favour_Akpan_Resume.pdf",
+  resumePath: "/Favour_AkpanResume.pdf",
   links: {
     linkedin: "https://www.linkedin.com/in/favourakpan23",
     github: "https://github.com/FavourAKPAN",
