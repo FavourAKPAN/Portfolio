@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Portfolio — UX Design + QA</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{--canvas:#F5F3ED;--soft:#E8E9E2;--ink:#171917;--muted:#4A4E47;--body:#2F332F;--surf:#fff;--line:#C3C6BC;--rule:#E1E3EA;--accent-text:#7A1FD1}
+.dark{--canvas:#141714;--soft:#1B1F1B;--ink:#F5F3ED;--muted:#B5B9AE;--body:#D3D6CC;--surf:#242824;--line:#3B403A;--rule:#2A2F2A;--accent-text:#B76BFF}
+.themebtn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:background .2s,color .2s}
+.themebtn:hover{background:var(--ink);color:var(--canvas)}
+.themebtn:focus-visible{outline:3px solid #B76BFF;outline-offset:3px}
+.pphoto{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 25%;background:var(--soft)}
+@media (prefers-reduced-motion:reduce){.themebtn{transition:none}}
+body{margin:0}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible{outline:3px solid #B76BFF;outline-offset:3px;box-shadow:0 0 0 1px #171917}
+.skillgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
+@media (max-width:700px){.skillgrid{grid-template-columns:1fr}}
+.proc{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.pcard{display:flex;flex-direction:column;justify-content:space-between;gap:20px;min-height:112px;box-sizing:border-box;padding:18px 20px;background:var(--canvas);border:1px solid var(--line);border-radius:12px;color:var(--ink)}
+.pnum{font-size:13px;font-weight:500;letter-spacing:.08em;color:var(--muted)}
+.pname{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;line-height:1.2}
+.pcard.plast{background:#7A1FD1;border-color:#7A1FD1;color:#fff}
+.pcard.plast .pnum{color:#E9D8FB}
+@media (max-width:900px){.proc{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:560px){.proc{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.pcard{min-height:92px;padding:14px 16px}.pname{font-size:18px}}
+.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:640px){.tabs{grid-template-columns:1fr}}
+.tabbtn{display:flex;align-items:center;gap:20px;width:100%;box-sizing:border-box;text-align:left;padding:24px 28px;border-radius:16px;border:1.5px solid #4A504A;background:#2E332E;color:#F5F3ED;font:inherit;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.tabbtn .tsub{color:#B5B9AE}
+.tabbtn:hover{border-color:#B76BFF}
+.tabbtn.sel{background:#7A1FD1;border-color:#7A1FD1;color:#fff}
+.tabbtn.sel .tsub{color:#F0E3FD}
+.tabbtn:focus-visible{outline:3px solid #B76BFF;outline-offset:3px}
+.tpanel{margin-top:24px;display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;border:1px solid #3B403A;border-radius:20px;background:#1F231F;padding:clamp(28px,5vw,56px);animation:tfade .25s ease-out both}
+.ticon{display:flex;align-items:center;justify-content:center;width:64px;height:64px;flex:none;border:1.5px solid #B76BFF;border-radius:50%;color:#B76BFF}
+@keyframes tfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.tpanel{animation:none}.tabbtn{transition:none}}
+.about-wrap{max-width:1216px;margin:0 auto;display:flex;flex-wrap:wrap;gap:56px;align-items:center}
+.about-photo{flex:1 1 340px;display:flex;justify-content:center;padding:24px 0}
+.polaroid{position:relative;width:min(100%,360px);box-sizing:border-box;background:var(--surf);padding:20px 20px 24px;border:1px solid var(--line);border-radius:4px;box-shadow:0 8px 24px rgba(23,25,23,.12);transform:rotate(-4deg)}
+.tape{position:absolute;top:-16px;left:50%;width:120px;height:32px;margin-left:-60px;background:rgba(183,107,255,.55);transform:rotate(3deg)}
+.pframe{aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;background:var(--soft);border:1px dashed #73776F;color:var(--muted);font-size:15px}
+.notebook{flex:1.5 1 480px;min-width:0;position:relative;background:var(--surf);border:1.5px solid var(--ink);border-radius:8px;padding:56px clamp(24px,4vw,56px) 56px}
+.rings{position:absolute;top:-9px;left:24px;right:24px;display:flex;justify-content:space-between}
+.ring{width:14px;height:18px;border:2px solid var(--ink);border-radius:50%;background:var(--soft)}
+.lined p{margin:0 0 40px;font-size:18px;line-height:40px;color:var(--body)}
+.lined{background:repeating-linear-gradient(to bottom,transparent 0,transparent 39px,var(--rule) 39px,var(--rule) 40px)}
+.lined .quote{margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;color:var(--ink);border-left:4px solid #B76BFF;padding-left:20px}
+.brush-on,.brush-on *{cursor:none !important}
+.bubble{display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;border:1.5px solid var(--ink);background:var(--surf);padding:10px 18px;border-radius:999px;font-weight:500;cursor:default;transition:transform .28s cubic-bezier(.3,1.6,.5,1),background .2s,color .2s,border-color .2s}
+.skillgrid .bubble:nth-child(3n){padding:14px 24px;font-size:18px}
+.bubble:hover{transform:translateY(-6px) scale(1.08) rotate(-3deg);background:#7A1FD1;color:#fff;border-color:var(--accent-text)}
+.bubble:nth-child(even):hover{transform:translateY(-6px) scale(1.08) rotate(3deg)}
+@media (prefers-reduced-motion:reduce){.bubble{transition:none}.bubble:hover,.bubble:nth-child(even):hover{transform:none}}
+</style>
+</helmet>
+<div class="{{rootClass}}" onMouseMove="{{onMove}}" onMouseLeave="{{onLeave}}" onMouseDown="{{onDown}}" onMouseUp="{{onUp}}" style="position:relative;overflow:hidden;width:100%;font-family:Inter,sans-serif;color:var(--ink);background:var(--canvas)">
+<sc-for list="{{trail}}" as="p" hint-placeholder-count="0"><div aria-hidden="true" style="position:absolute;pointer-events:none;z-index:9998;border-radius:50%;background:#B76BFF;transform:translate(-50%,-50%);{{p.css}}"></div></sc-for>
+<div aria-hidden="true" style="position:absolute;pointer-events:none;z-index:9999;border-radius:50%;box-sizing:border-box;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s;{{tipCss}}"></div>
+
+<header style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:24px 56px;max-width:1328px;margin:0 auto;box-sizing:border-box">
+<a href="#home" style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px">Favour Akpan</a>
+<nav aria-label="Primary" style="display:flex;flex-wrap:wrap;gap:28px;align-items:center;font-size:15px;font-weight:500">
+<a href="#home" aria-current="page" style="border-bottom:2px solid #B76BFF;padding-bottom:4px">Home</a><a href="#about">About</a><a href="#work">Work</a><a href="#skills">Skills</a>
+<a href="#contact" style="background:var(--ink);color:var(--canvas);padding:12px 22px;border-radius:999px">Contact</a>
+<button type="button" class="themebtn" aria-pressed="{{dark}}" aria-label="{{themeLabel}}" onClick="{{toggleTheme}}"><sc-if value="{{dark}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></sc-if><sc-if value="{{light}}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 019.5 4 8 8 0 1020 14.5z"/></svg></sc-if></button>
+</nav>
+</header>
+
+<section id="home" style="padding:72px 56px 112px;max-width:1328px;margin:0 auto;box-sizing:border-box">
+<p style="margin:0 0 28px;font-size:13px;letter-spacing:.18em;font-weight:600"><span style="background:#7A1FD1;color:#fff;padding:6px 12px;border-radius:999px">UX DESIGN · SOFTWARE QA</span></p>
+<h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(44px,8vw,112px);line-height:1;letter-spacing:-.03em;max-width:1100px">I design <span style="color:var(--accent-text)">thoughtful digital experiences</span> and test them for quality.</h1>
+<p style="margin:40px 0 0;font-size:20px;line-height:1.6;color:var(--muted);max-width:640px">I'm a Computer Engineering graduate and multidisciplinary digital product practitioner working across UX design and software QA. I combine user-centred thinking, technical understanding and structured testing to help make digital products intuitive, useful and reliable.</p>
+<div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:40px">
+<a href="#work" style="background:var(--ink);color:var(--canvas);padding:16px 28px;border-radius:999px;font-weight:600;min-height:20px">Explore my work</a>
+<a href="#contact" style="border:1.5px solid var(--ink);padding:16px 28px;border-radius:999px;font-weight:600">Let's connect</a>
+</div>
+<p style="margin:32px 0 0;font-size:14px;color:var(--muted)">Based in Port Harcourt, Nigeria · WAT (GMT+1)</p>
+</section>
+
+<section id="about" style="background:var(--soft);padding:96px 56px">
+<div class="about-wrap">
+<div class="about-photo">
+<div class="polaroid">
+<span class="tape" aria-hidden="true"></span>
+<img class="pphoto" src="/_blob/360f94585e9061cf509ff5a2e49dce67" alt="Portrait of Favour Akpan smiling, wearing glasses, a white shirt and a pink waistcoat">
+<p style="margin:16px 0 0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;text-align:center">Favour Akpan</p>
+</div>
+</div>
+<div class="notebook">
+<div class="rings" aria-hidden="true"><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span></div>
+<h2 style="margin:0 0 40px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(40px,6vw,72px);line-height:1;letter-spacing:-.03em;text-transform:uppercase">A little about me</h2>
+<div class="lined">
+<p>I’m a Computer Engineering graduate with a growing focus on creating digital products that are both intuitive to use and reliable in practice.</p>
+<p>My work sits at the intersection of UX design and software quality assurance. On the design side, I enjoy turning ideas into clear, thoughtful experiences that put users first. On the QA side, I explore how products behave, test different scenarios, validate API responses, and identify issues that could affect functionality or the user experience.</p>
+<p>I’m particularly interested in how technology can solve everyday problems. From exploring community-focused fintech through Padijar to designing travel experiences for Nigerian travellers through Trexpal, I enjoy thinking about how digital products can make people’s lives simpler.</p>
+<p>My engineering background shapes how I approach problems: I like to understand how things work, question assumptions, pay attention to details, and keep refining until the experience makes sense.</p>
+<p>I’m always learning, experimenting with new tools, and looking for opportunities to contribute to meaningful products alongside people who care about building them well.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="work" style="background:#242824;color:#F5F3ED;padding:104px 56px">
+<div style="max-width:1216px;margin:0 auto">
+<p style="margin:0 0 16px;font-size:13px;letter-spacing:.18em;font-weight:600;color:#B76BFF">SELECTED WORK</p>
+<h2 style="margin:0 0 56px;font-family:'Space Grotesk',sans-serif;font-size:56px;line-height:1.05;letter-spacing:-.02em">Design and quality, side by side.</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px">
+<article style="grid-column:1/-1;border:1px solid #B76BFF;border-radius:20px;padding:20px;display:flex;flex-wrap:wrap;gap:32px">
+<div style="flex:1 1 420px;display:flex;align-items:center"><img src="/_blob/4bd9a3a14b99b27faa193ed4378fd9cc" alt="Trexpal travel app case study cover showing accommodation search, welcome and flight search screens" style="width:100%;height:auto;border-radius:12px;display:block"></div>
+<div style="flex:1 1 420px;display:flex;flex-direction:column;gap:18px;justify-content:center">
+<p style="margin:0;font-size:12px;letter-spacing:.16em;font-weight:600;color:#B76BFF">FEATURED · UX / UI DESIGN · TRAVEL TECH</p>
+<h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:40px;line-height:1.1">Trexpal — Travel Companion App</h3>
+<p style="margin:0;line-height:1.6;color:#D3D6CC">A travel companion app for Nigerian travellers, designed to bring flight bookings, accommodation bookings and itinerary planning together in one experience.</p>
+<p style="margin:0;line-height:1.9;color:#F5F3ED"><span style="color:#B76BFF">—</span> Flight-booking experience<br><span style="color:#B76BFF">—</span> Accommodation-booking experience<br><span style="color:#B76BFF">—</span> Itinerary-planning experience</p>
+<p style="margin:0;font-size:14px;color:#B5B9AE">Presented as a design project. <a href="https://www.behance.net/gallery/237749185/Trexpal-Travel-Companion-App-UXUI-Design-Case-Study" target="_blank" rel="noopener" style="color:#B76BFF;font-weight:600">View the case study on Behance →</a></p>
+</div></article>
+
+<article style="border:1px solid #3B403A;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:18px">
+<img src="/_blob/84f7ad520e59a3e2e6522a7f141bb0ad" alt="Padijar fintech app case study cover showing the wallet home screen" style="width:100%;height:auto;border-radius:12px;display:block">
+<p style="margin:0;font-size:12px;letter-spacing:.16em;font-weight:600;color:#B76BFF">UX / UI DESIGN</p>
+<h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:28px">Padijar — Community Fintech UX</h3>
+<p style="margin:0;line-height:1.6;color:#D3D6CC">A fintech product concept focused on community savings and budgeting, covering its wallet experience, onboarding, design system and interface decisions.</p>
+<p style="margin:0;font-size:14px;color:#B5B9AE"><a href="https://www.behance.net/gallery/230753991/PadiJar-Fintech-App-Case-Study-%28Android-App%29?platform=direct" target="_blank" rel="noopener" style="color:#B76BFF;font-weight:600">View the case study on Behance →</a></p>
+</article>
+
+
+
+<article style="border:1px solid #3B403A;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:18px">
+<div style="aspect-ratio:16/10;border-radius:12px;background:#171917;border:1px solid #3B403A;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box"><img src="/_blob/96c2682707f979066d0c349213b84b26" alt="Postman collection runner results for DummyJSON API Testing: 122 tests, 122 passed, 0 failed, 0 errors, 1 iteration, 57 seconds" style="width:100%;height:auto;max-height:100%;object-fit:contain;border-radius:8px"></div>
+<p style="margin:0;font-size:12px;letter-spacing:.16em;font-weight:600;color:#B76BFF">API TESTING · SOFTWARE QA</p>
+<h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:28px">REST API Testing — Postman</h3>
+<p style="margin:0;line-height:1.6;color:#D3D6CC">Hands-on practice with HTTP methods, response validation, authentication, negative scenarios and JavaScript test assertions. The final Postman collection run reports 122 tests: 122 passed, 0 failed, 0 errors.</p>
+<p style="margin:0;font-size:14px;color:#B5B9AE"><a href="https://github.com/FavourAKPAN/DummyJSON-API-Testing" target="_blank" rel="noopener" style="color:#B76BFF;font-weight:600">View the repository on GitHub →</a></p>
+</article>
+
+
+
+<article style="border:1px solid #3B403A;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:18px">
+<div style="aspect-ratio:16/10;border-radius:12px;background:#171917;border:1px solid #3B403A;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box"><img src="/_blob/22f2dd05ebe253f9a88b8893727e873c" alt="SauceDemo Manual QA Testing repository README: project overview of manual functional testing, defect reporting and test summarisation" style="width:100%;height:auto;max-height:100%;object-fit:contain;border-radius:8px"></div>
+<p style="margin:0;font-size:12px;letter-spacing:.16em;font-weight:600;color:#B76BFF">MANUAL QA</p>
+<h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:28px">SauceDemo — Functional Testing</h3>
+<p style="margin:0;line-height:1.6;color:#D3D6CC">A functional testing exercise covering login validation, checkout scenarios, negative testing and defect documentation.</p>
+<p style="margin:0;font-size:14px;color:#B5B9AE"><a href="https://github.com/FavourAKPAN/saucedemo-manual-qa-testing" target="_blank" rel="noopener" style="color:#B76BFF;font-weight:600">View the repository on GitHub →</a></p>
+</article>
+
+</div></div>
+</section>
+
+<section id="skills" style="padding:104px 56px">
+<div style="max-width:1216px;margin:0 auto">
+<h2 style="margin:0 0 56px;font-family:'Space Grotesk',sans-serif;font-size:56px;line-height:1.05;letter-spacing:-.02em">Skills</h2>
+<div class="skillgrid">
+<div style="border-top:2px solid var(--ink);padding-top:20px"><h3 style="margin:0 0 16px;font-family:'Space Grotesk',sans-serif;font-size:20px">UI/UX Design</h3><div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center"><span class="bubble">Interface design</span><span class="bubble">Visual hierarchy</span><span class="bubble">Layout and composition</span><span class="bubble">Design systems</span><span class="bubble">Prototyping</span><span class="bubble">Product thinking</span><span class="bubble">User-centred design</span></div></div>
+<div style="border-top:2px solid var(--ink);padding-top:20px"><h3 style="margin:0 0 16px;font-family:'Space Grotesk',sans-serif;font-size:20px">Software Quality Assurance</h3><div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center"><span class="bubble">Test Case Design</span><span class="bubble">Functional Testing</span><span class="bubble">Exploratory &amp; Negative Testing</span><span class="bubble">REST API Testing</span><span class="bubble">API Test Assertions</span><span class="bubble">Authentication Testing</span><span class="bubble">Bug Reporting &amp; Defect Tracking</span><span class="bubble">Regression Testing</span></div></div>
+</div>
+<h3 style="margin:72px 0 24px;font-family:'Space Grotesk',sans-serif;font-size:32px;letter-spacing:-.01em">Tools in my workflow</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:40px"><div style="border-top:2px solid #B76BFF;padding-top:20px"><h4 style="margin:0 0 16px;font-size:13px;letter-spacing:.14em;font-weight:600">DESIGN AND PROTOTYPING</h4><div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><span class="bubble">Figma</span><span class="bubble">Framer</span></div></div><div style="border-top:2px solid #B76BFF;padding-top:20px"><h4 style="margin:0 0 16px;font-size:13px;letter-spacing:.14em;font-weight:600">SOFTWARE TESTING AND WORKFLOW</h4><div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><span class="bubble">Postman</span><span class="bubble">Jira</span><span class="bubble">GitHub</span></div></div><div style="border-top:2px solid #B76BFF;padding-top:20px"><h4 style="margin:0 0 16px;font-size:13px;letter-spacing:.14em;font-weight:600">AI-ASSISTED WORKFLOW</h4><div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><span class="bubble">ChatGPT</span><span class="bubble">Claude</span></div></div></div></div>
+</section>
+
+<section style="background:var(--soft);padding:104px 56px">
+<div style="max-width:1216px;margin:0 auto">
+<h2 style="margin:0 0 64px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:1.05;letter-spacing:-.02em">How I work</h2>
+<div style="display:flex;flex-direction:column;gap:48px">
+<div><h3 style="margin:0 0 16px;font-size:13px;letter-spacing:.16em;font-weight:600;color:var(--muted)">DESIGN</h3><ol class="proc"><li class="pcard"><span class="pnum">01</span><span class="pname">Understand</span></li><li class="pcard"><span class="pnum">02</span><span class="pname">Explore</span></li><li class="pcard"><span class="pnum">03</span><span class="pname">Structure</span></li><li class="pcard"><span class="pnum">04</span><span class="pname">Design</span></li><li class="pcard plast"><span class="pnum">05</span><span class="pname">Refine</span></li></ol></div>
+<div><h3 style="margin:0 0 16px;font-size:13px;letter-spacing:.16em;font-weight:600;color:var(--muted)">TESTING</h3><ol class="proc"><li class="pcard"><span class="pnum">01</span><span class="pname">Understand requirements</span></li><li class="pcard"><span class="pnum">02</span><span class="pname">Plan scenarios</span></li><li class="pcard"><span class="pnum">03</span><span class="pname">Execute tests</span></li><li class="pcard"><span class="pnum">04</span><span class="pname">Document defects</span></li><li class="pcard plast"><span class="pnum">05</span><span class="pname">Retest</span></li></ol></div>
+</div>
+<p style="margin:48px 0 0;font-size:14px;color:var(--muted)">A general framework — not every project followed every step.</p>
+</div>
+</section>
+<section style="background:#242824;color:#F5F3ED;padding:112px 56px">
+<div style="max-width:1216px;margin:0 auto">
+<p style="margin:0 0 16px;font-size:13px;letter-spacing:.18em;font-weight:600;color:#B76BFF">TWO PERSPECTIVES</p>
+<h2 style="margin:0 0 24px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:1.05;letter-spacing:-.02em;max-width:900px">How I Think About Products</h2>
+<p style="margin:0 0 56px;font-size:20px;line-height:1.6;color:#D3D6CC;max-width:640px">I look at products from two perspectives: how they feel to use and how well they work.</p>
+<div class="tabs" role="tablist" aria-label="Product perspective" onKeyDown="{{onTabKey}}">
+<button type="button" role="tab" id="tab-ux" aria-selected="{{uxSel}}" aria-controls="panel-ux" tabIndex="{{uxTab}}" class="{{uxCls}}" onClick="{{pickUx}}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18M9 9v11"></path></svg><span><span style="display:block;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:24px">UX Design</span><span class="tsub" style="display:block;margin-top:4px;font-size:15px">How it feels to use</span></span></button>
+<button type="button" role="tab" id="tab-qa" aria-selected="{{qaSel}}" aria-controls="panel-qa" tabIndex="{{qaTab}}" class="{{qaCls}}" onClick="{{pickQa}}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg><span><span style="display:block;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:24px">Software QA</span><span class="tsub" style="display:block;margin-top:4px;font-size:15px">How well it works</span></span></button>
+</div>
+<sc-if value="{{isUx}}" hint-placeholder-val="{{ true }}">
+<div class="tpanel" role="tabpanel" id="panel-ux" aria-labelledby="tab-ux">
+<div class="ticon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18M9 9v11"></path></svg></div>
+<div style="flex:1 1 360px;min-width:0"><p style="margin:0 0 16px;font-size:13px;letter-spacing:.16em;font-weight:600;color:#B76BFF">UX DESIGN</p>
+<h3 style="margin:0 0 20px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(28px,4vw,44px);line-height:1.1;letter-spacing:-.01em">Does it make sense to the user?</h3>
+<p style="margin:0;font-size:20px;line-height:1.7;color:#D3D6CC;max-width:640px">I consider usability, information hierarchy, user flows and how clearly an interface communicates its purpose. My goal is to make digital experiences intuitive, useful and easy to navigate.</p></div>
+</div>
+</sc-if>
+<sc-if value="{{isQa}}" hint-placeholder-val="{{ true }}">
+<div class="tpanel" role="tabpanel" id="panel-qa" aria-labelledby="tab-qa">
+<div class="ticon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg></div>
+<div style="flex:1 1 360px;min-width:0"><p style="margin:0 0 16px;font-size:13px;letter-spacing:.16em;font-weight:600;color:#B76BFF">SOFTWARE QA</p>
+<h3 style="margin:0 0 20px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(28px,4vw,44px);line-height:1.1;letter-spacing:-.01em">Does it behave as expected?</h3>
+<p style="margin:0;font-size:20px;line-height:1.7;color:#D3D6CC;max-width:640px">I examine requirements, test different scenarios, validate API responses and document defects clearly. My goal is to identify issues that could affect functionality, reliability or the user experience.</p></div>
+</div>
+</sc-if>
+</div>
+</section>
+
+<section id="contact" style="border-top:1px solid #3B403A;background:#171917;color:#F5F3ED;padding:128px 56px">
+<div style="max-width:1216px;margin:0 auto">
+<h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(44px,7vw,96px);line-height:1;letter-spacing:-.03em;max-width:900px">Have a product worth making better?</h2>
+<p style="margin:32px 0 48px;font-size:20px;line-height:1.6;color:#D3D6CC;max-width:600px">I'd like to hear from recruiters, designers, developers and collaborators building products that deserve both thoughtful design and rigorous testing.</p>
+<div style="display:flex;flex-wrap:wrap;gap:16px">
+<a href="mailto:akpanfavoura4@gmail.com?subject=Portfolio%20enquiry" style="background:#7A1FD1;color:#fff;border:1.5px solid #B76BFF;padding:16px 28px;border-radius:999px;font-weight:600">Send me an email</a>
+<a href="https://www.linkedin.com/in/favourakpan23" target="_blank" rel="noopener" style="border:1.5px solid #F5F3ED;padding:16px 28px;border-radius:999px;font-weight:600">LinkedIn</a>
+<a href="https://github.com/FavourAKPAN" target="_blank" rel="noopener" style="border:1.5px solid #F5F3ED;padding:16px 28px;border-radius:999px;font-weight:600">GitHub</a>
+<a href="https://www.behance.net/favourakpan5" target="_blank" rel="noopener" style="border:1.5px solid #F5F3ED;padding:16px 28px;border-radius:999px;font-weight:600">Behance</a>
+<a href="https://x.com/favour_akpan_" target="_blank" rel="noopener" style="border:1.5px solid #F5F3ED;padding:16px 28px;border-radius:999px;font-weight:600">X</a>
+<a href="{{resumeUrl}}" target="_blank" rel="noopener" style="border:1.5px solid #F5F3ED;padding:16px 28px;border-radius:999px;font-weight:600">Resume</a>
+</div>
+<div style="margin-top:64px;padding-top:32px;border-top:1px solid #3B403A;display:flex;flex-wrap:wrap;gap:24px 56px;align-items:flex-end;justify-content:space-between">
+<div><p style="margin:0 0 12px;font-size:13px;letter-spacing:.16em;font-weight:600;color:#B76BFF">LOCAL TIME · PORT HARCOURT, NIGERIA</p>
+<time style="display:block;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(48px,7vw,88px);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums">{{clock}}</time></div>
+<div style="font-size:16px;line-height:1.7;color:#D3D6CC"><p style="margin:0">Based in Port Harcourt, Nigeria</p><p style="margin:0">Timezone: Lagos, WAT (GMT+1)</p><p style="margin:0;color:#B5B9AE">{{clockDate}}</p></div>
+</div>
+</div>
+
+</section>
+
+<footer style="background:#171917;color:#F5F3ED;padding:40px 56px;border-top:1px solid #3B403A">
+<div style="max-width:1216px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;font-size:15px">
+<a href="#home" style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px">{{name}}<span style="color:#B76BFF">.</span></a>
+<nav aria-label="Footer" style="display:flex;flex-wrap:wrap;gap:24px"><a href="mailto:akpanfavoura4@gmail.com">Email</a><a href="https://www.linkedin.com/in/favourakpan23" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/FavourAKPAN" target="_blank" rel="noopener">GitHub</a><a href="https://www.behance.net/favourakpan5" target="_blank" rel="noopener">Behance</a><a href="https://x.com/favour_akpan_" target="_blank" rel="noopener">X</a></nav>
+<p style="margin:0;color:#B5B9AE">© {{year}} {{name}}. All rights reserved.<br>Port Harcourt, Nigeria · WAT (GMT+1)</p>
+</div></footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4900}}'>
+class Component extends DCLogic {
+componentDidMount() {
+const ok = typeof matchMedia === 'function' && matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+let dark = false; try { dark = localStorage.getItem('theme') === 'dark'; } catch (err) {}
+this.setState({ brush: ok, dark });
+this._tick = setInterval(() => this.setState({ now: Date.now() }), 1000);
+}
+componentWillUnmount() { clearTimeout(this._fade); clearInterval(this._tick); }
+move(e) {
+const el = e.currentTarget; const r = el.getBoundingClientRect(); const k = r.width / el.offsetWidth || 1;
+this._x = (e.clientX - r.left) / k; this._y = (e.clientY - r.top) / k;
+const t = e.target; this._over = !!(t && t.closest && t.closest('a,.bubble,button'));
+if (!this._raf) { this._raf = requestAnimationFrame(() => this.frame()); }
+}
+frame() {
+this._raf = 0;
+const t = ((this.state || {}).trail || []).slice(-12); t.push({ x: this._x, y: this._y });
+this.setState({ x: this._x, y: this._y, over: this._over, on: true, trail: t });
+clearTimeout(this._fade); this._fade = setTimeout(() => this.fade(), 70);
+}
+fade() {
+const t = ((this.state || {}).trail || []).slice(1);
+this.setState({ trail: t });
+if (t.length > 0) { this._fade = setTimeout(() => this.fade(), 40); }
+}
+resumeLink() {
+const p = '/_blob/d761c031d1aefa3d869f3c8c8cc89ef9';
+try { return new URL(p, document.baseURI).href; } catch (err) { return p; }
+}
+onTabKey(e) {
+if (['ArrowLeft','ArrowRight','Home','End'].indexOf(e.key) < 0) { return; }
+e.preventDefault();
+const next = ((this.state || {}).tab || 'ux') === 'ux' ? 'qa' : 'ux';
+this.setState({ tab: next });
+setTimeout(() => { const el = document.getElementById('tab-' + next); if (el) { el.focus(); } }, 0);
+}
+renderVals() {
+const tab = (this.state || {}).tab || 'ux';
+const NAME = 'Favour Akpan';
+const s = this.state || {};
+const on = !!(s.brush && s.on);
+const tr = s.trail || []; const n = tr.length;
+const trail = on ? tr.map((p, i) => { const k = (i + 1) / n; const z = Math.round(4 + k * 16); return { css: 'left:' + p.x + 'px;top:' + p.y + 'px;width:' + z + 'px;height:' + z + 'px;opacity:' + (0.08 + k * 0.4).toFixed(2) }; }) : [];
+const z = s.over ? 40 : (s.down ? 26 : 14);
+const tipCss = on ? 'display:block;left:' + s.x + 'px;top:' + s.y + 'px;width:' + z + 'px;height:' + z + 'px;box-shadow:0 0 0 1px #171917;' + (s.over ? 'background:transparent;border:2px solid #B76BFF;' : 'background:#B76BFF;border:2px solid #fff;') : 'display:none';
+return {
+isUx: tab === 'ux', isQa: tab === 'qa', uxSel: tab === 'ux', qaSel: tab === 'qa', uxTab: tab === 'ux' ? 0 : -1, qaTab: tab === 'qa' ? 0 : -1, uxCls: tab === 'ux' ? 'tabbtn sel' : 'tabbtn', qaCls: tab === 'qa' ? 'tabbtn sel' : 'tabbtn',
+pickUx: () => this.setState({ tab: 'ux' }), pickQa: () => this.setState({ tab: 'qa' }), onTabKey: (e) => this.onTabKey(e),
+resumeUrl: this.resumeLink(), name: NAME, year: new Date().getFullYear(),
+clock: new Date().toLocaleTimeString('en-GB', { timeZone: 'Africa/Lagos', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }),
+clockDate: new Date().toLocaleDateString('en-GB', { timeZone: 'Africa/Lagos', weekday: 'long', day: 'numeric', month: 'long' }),
+rootClass: (s.brush ? 'brush-on ' : '') + (s.dark ? 'dark' : ''), dark: !!s.dark, light: !s.dark, themeLabel: s.dark ? 'Switch to light mode' : 'Switch to dark mode', toggleTheme: () => { const d = !this.state.dark; this.setState({ dark: d }); try { localStorage.setItem('theme', d ? 'dark' : 'light'); } catch (err) {} }, trail, tipCss,
+onMove: (e) => this.move(e),
+onLeave: () => { clearTimeout(this._fade); this.setState({ on: false, trail: [] }); },
+onDown: () => this.setState({ down: true }),
+onUp: () => this.setState({ down: false })
+};
+}
+}
+</script>
+</body>
+</html>

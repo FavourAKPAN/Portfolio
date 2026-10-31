@@ -1,0 +1,380 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: #f5f3ed;
+  --soft: #e8e9e2;
+  --ink: #171917;
+  --muted: #4a4e47;
+  --body: #2f332f;
+  --surf: #ffffff;
+  --line: #c3c6bc;
+  --rule: #e1e3ea;
+  --accent-text: #7a1fd1;
+  color-scheme: light;
+}
+.dark {
+  --canvas: #141714;
+  --soft: #1b1f1b;
+  --ink: #f5f3ed;
+  --muted: #b5b9ae;
+  --body: #d3d6cc;
+  --surf: #242824;
+  --line: #3b403a;
+  --rule: #2a2f2a;
+  --accent-text: #b76bff;
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+a:focus-visible,
+button:focus-visible,
+[role="tab"]:focus-visible {
+  outline: 3px solid #b76bff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 1px #171917;
+}
+
+/* Hide the system cursor only while the brush cursor is active. */
+.brush-on,
+.brush-on * {
+  cursor: none !important;
+}
+
+@layer components {
+  .page-x {
+    @apply px-5 sm:px-8 lg:px-14;
+  }
+  .eyebrow {
+    @apply m-0 mb-4 text-[13px] font-semibold tracking-[0.18em] uppercase text-brand;
+  }
+  .h-display {
+    @apply font-display font-bold;
+    letter-spacing: -0.03em;
+  }
+
+  /* Pill buttons */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full px-7 py-4 font-semibold no-underline;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .btn-solid {
+    @apply bg-ink text-canvas;
+  }
+  .btn-outline {
+    @apply border-[1.5px] border-ink text-ink;
+  }
+  .btn-outline:hover {
+    background: var(--ink);
+    color: var(--canvas);
+  }
+  .btn-on-dark {
+    @apply border-[1.5px] border-[#f5f3ed] text-[#f5f3ed];
+  }
+  .btn-on-dark:hover {
+    background: #f5f3ed;
+    color: #171917;
+  }
+  .btn-brand {
+    @apply border-[1.5px] border-brand bg-brand-fill text-white;
+  }
+  .btn-brand:hover {
+    background: #8e33e8;
+  }
+
+  /* Theme toggle */
+  .themebtn {
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-full bg-transparent text-ink;
+    border: 1.5px solid var(--ink);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .themebtn:hover {
+    background: var(--ink);
+    color: var(--canvas);
+  }
+
+  /* About: polaroid + notebook */
+  .about-wrap {
+    @apply mx-auto flex max-w-page flex-wrap items-center;
+    gap: 56px;
+  }
+  .about-photo {
+    @apply flex justify-center;
+    flex: 1 1 320px;
+    padding: 24px 0;
+  }
+  .polaroid {
+    position: relative;
+    width: min(100%, 360px);
+    box-sizing: border-box;
+    background: var(--surf);
+    padding: 20px 20px 24px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(23, 25, 23, 0.12);
+    transform: rotate(-4deg);
+  }
+  .tape {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    width: 120px;
+    height: 32px;
+    margin-left: -60px;
+    background: rgba(183, 107, 255, 0.55);
+    transform: rotate(3deg);
+  }
+  .notebook {
+    position: relative;
+    flex: 1.5 1 440px;
+    min-width: 0;
+    background: var(--surf);
+    border: 1.5px solid var(--ink);
+    border-radius: 8px;
+    padding: 56px clamp(24px, 4vw, 56px);
+  }
+  .rings {
+    position: absolute;
+    top: -9px;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .ring {
+    width: 14px;
+    height: 18px;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    background: var(--soft);
+  }
+  .lined {
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 39px,
+      var(--rule) 39px,
+      var(--rule) 40px
+    );
+  }
+  .lined p {
+    margin: 0 0 40px;
+    font-size: 18px;
+    line-height: 40px;
+    color: var(--body);
+  }
+  @media (max-width: 420px) {
+    .rings .ring:nth-child(n + 8) {
+      display: none;
+    }
+  }
+
+  /* Skill bubbles */
+  .bubble {
+    @apply inline-flex items-center justify-center text-center font-medium;
+    line-height: 1.2;
+    border: 1.5px solid var(--ink);
+    background: var(--surf);
+    color: var(--ink);
+    padding: 10px 18px;
+    border-radius: 999px;
+    cursor: default;
+    transition: transform 0.28s cubic-bezier(0.3, 1.6, 0.5, 1), background 0.2s, color 0.2s,
+      border-color 0.2s;
+  }
+  .skillgrid .bubble:nth-child(3n) {
+    padding: 14px 24px;
+    font-size: 18px;
+  }
+  .bubble:hover {
+    transform: translateY(-6px) scale(1.08) rotate(-3deg);
+    background: #7a1fd1;
+    color: #fff;
+    border-color: var(--accent-text);
+  }
+  .bubble:nth-child(even):hover {
+    transform: translateY(-6px) scale(1.08) rotate(3deg);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bubble {
+      transition: none;
+    }
+    .bubble:hover,
+    .bubble:nth-child(even):hover {
+      transform: none;
+    }
+  }
+
+  /* Process cards */
+  .proc {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .pcard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 112px;
+    box-sizing: border-box;
+    padding: 18px 20px;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: var(--ink);
+  }
+  .pnum {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .pname {
+    font-family: var(--font-space-grotesk), sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+  .pcard.plast {
+    background: #7a1fd1;
+    border-color: #7a1fd1;
+    color: #fff;
+  }
+  .pcard.plast .pnum {
+    color: #e9d8fb;
+  }
+  @media (max-width: 900px) {
+    .proc {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 560px) {
+    .proc {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .pcard {
+      min-height: 92px;
+      padding: 14px 16px;
+    }
+    .pname {
+      font-size: 18px;
+    }
+  }
+
+  /* Tabs */
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  @media (max-width: 640px) {
+    .tabs {
+      grid-template-columns: 1fr;
+    }
+  }
+  .tabbtn {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    padding: 24px 28px;
+    border-radius: 16px;
+    border: 1.5px solid #4a504a;
+    background: #2e332e;
+    color: #f5f3ed;
+    font: inherit;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .tabbtn .tsub {
+    color: #b5b9ae;
+  }
+  .tabbtn:hover {
+    border-color: #b76bff;
+  }
+  .tabbtn[aria-selected="true"] {
+    background: #7a1fd1;
+    border-color: #7a1fd1;
+    color: #fff;
+  }
+  .tabbtn[aria-selected="true"] .tsub {
+    color: #f0e3fd;
+  }
+  .tpanel {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: flex-start;
+    border: 1px solid #3b403a;
+    border-radius: 20px;
+    background: #1f231f;
+    padding: clamp(24px, 5vw, 56px);
+    animation: tfade 0.25s ease-out both;
+  }
+  .tpanel[hidden] {
+    display: none;
+  }
+  .ticon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    flex: none;
+    border: 1.5px solid #b76bff;
+    border-radius: 50%;
+    color: #b76bff;
+  }
+  @keyframes tfade {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tpanel {
+      animation: none;
+    }
+    .tabbtn {
+      transition: none;
+    }
+    .themebtn,
+    .btn {
+      transition: none;
+    }
+  }
+
+  /* Case-study table */
+  .qa-table th,
+  .qa-table td {
+    @apply border-b border-line px-3 py-2 text-left align-top text-sm;
+  }
+}
