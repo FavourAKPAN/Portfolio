@@ -4,6 +4,7 @@ import { getSiteUrl, SITE } from "@/config/site";
 import BrushCursor from "@/components/BrushCursor";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const spaceGrotesk = localFont({
@@ -75,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <BrushCursor />
+        <SpeedInsights />
       </body>
     </html>
   );
