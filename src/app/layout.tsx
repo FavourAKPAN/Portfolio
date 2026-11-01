@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
 import { getSiteUrl, SITE } from "@/config/site";
 import BrushCursor from "@/components/BrushCursor";
 import Footer from "@/components/Footer";
@@ -75,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <BrushCursor />
+        <Analytics />
       </body>
     </html>
   );
