@@ -106,6 +106,14 @@ export const projects: Project[] = [
       "Hands-on practice with HTTP methods, response validation, authentication, negative scenarios and JavaScript test assertions. DummyJSON is a practice API, not a production e-commerce application. Some write operations simulate creation, updates, and deletion rather than permanently changing stored data. Passing assertions confirms only that the observed responses met the checks defined in this collection; it does not guarantee that all possible API behaviour is defect-free.",
     result:
       "The final Postman collection run reports 122 tests: 122 passed, 0 failed, 0 errors.",
+    negativeExample: {
+      scenario:
+        "AUTH-NEG-002 (Postman): send GET /auth/me with an invalid bearer token, this_is_an_invalid_token_12345, to check that protected user data cannot be reached without valid credentials.",
+      expected:
+        "The API rejects the request with 401 Unauthorized and an invalid or expired token message, and returns no protected user information.",
+      actual:
+        "401 Unauthorized with the message invalid/expired token. Access to the protected endpoint was denied. Result: Pass.",
+    },
     covers: [
       "Request methods",
       "Response validation",
