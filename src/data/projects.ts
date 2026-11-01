@@ -103,7 +103,7 @@ export const projects: Project[] = [
     title: "REST API Testing — Postman",
     eyebrow: "API Testing · Software QA",
     summary:
-      "Hands-on practice with HTTP methods, response validation, authentication, negative scenarios and JavaScript test assertions.",
+      "Hands-on practice with HTTP methods, response validation, authentication, negative scenarios and JavaScript test assertions. DummyJSON is a practice API, not a production e-commerce application. Some write operations simulate creation, updates, and deletion rather than permanently changing stored data. Passing assertions confirms only that the observed responses met the checks defined in this collection; it does not guarantee that all possible API behaviour is defect-free.",
     result:
       "The final Postman collection run reports 122 tests: 122 passed, 0 failed, 0 errors.",
     covers: [
