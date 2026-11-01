@@ -92,7 +92,27 @@ export default async function ProjectPage({ params }: Props) {
           ))}
         </ul>
       </section>
-
+      
+{project.negativeExample && (
+        <section aria-labelledby="negative" className="mt-14">
+          <h2 id="negative" className="m-0 mb-4 font-display text-2xl font-semibold">Example negative test</h2>
+          <dl className="m-0 grid max-w-[680px] gap-4 rounded-2xl border border-line bg-surf p-6">
+            <div>
+              <dt className="text-sm text-muted">Scenario</dt>
+              <dd className="m-0 font-medium">{project.negativeExample.scenario}</dd>
+            </div>
+            <div>
+              <dt className="text-sm text-muted">Expected</dt>
+              <dd className="m-0 font-medium">{project.negativeExample.expected}</dd>
+            </div>
+            <div>
+              <dt className="text-sm text-muted">Actual</dt>
+              <dd className="m-0 font-medium">{project.negativeExample.actual}</dd>
+            </div>
+          </dl>
+        </section>
+      )}
+      
       {project.testCases && project.testCases.length > 0 && (
         <section aria-labelledby="cases" className="mt-14">
           <h2 id="cases" className="m-0 mb-4 font-display text-2xl font-semibold">Test cases</h2>
