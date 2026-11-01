@@ -24,6 +24,8 @@ export type Project = {
   /** Facts taken from the resume; each entry is rendered only when present. */
   role?: string;
   period?: string;
+  /** One real negative test from the project. Rendered only when provided. */
+  negativeExample?: { scenario: string; expected: string; actual: string; assertions?: string[] };
   /** What the project covers, in plain terms. */
   covers: string[];
   image: {
